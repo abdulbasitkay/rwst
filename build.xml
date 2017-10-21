@@ -81,10 +81,7 @@
       <include name="jre/lib/rt.jar"/>
     </fileset>
   </path>
-  
-  <property name="project.jdk.home" value="${jdk.home.1.8}"/>
-  <property name="project.jdk.bin" value="${jdk.bin.1.8}"/>
-  <property name="project.jdk.classpath" value="jdk.classpath.1.8"/>
+
   
   <!-- Modules -->
   
@@ -92,11 +89,6 @@
   <!-- Module rwst -->
   
   <dirname property="module.rwst.basedir" file="${ant.file}"/>
-  
-  
-  <property name="module.jdk.home.rwst" value="${project.jdk.home}"/>
-  <property name="module.jdk.bin.rwst" value="${project.jdk.bin}"/>
-  <property name="module.jdk.classpath.rwst" value="${project.jdk.classpath}"/>
   
   <property name="compiler.args.rwst" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
   
@@ -106,20 +98,12 @@
   <path id="rwst.module.bootclasspath">
     <!-- Paths to be included in compilation bootclasspath -->
   </path>
-  
-  <path id="rwst.module.production.classpath">
-    <path refid="${module.jdk.classpath.rwst}"/>
-  </path>
+
   
   <path id="rwst.runtime.production.module.classpath">
     <pathelement location="${rwst.output.dir}"/>
   </path>
-  
-  <path id="rwst.module.classpath">
-    <path refid="${module.jdk.classpath.rwst}"/>
-    <pathelement location="${rwst.output.dir}"/>
-  </path>
-  
+
   <path id="rwst.runtime.module.classpath">
     <pathelement location="${rwst.testoutput.dir}"/>
     <pathelement location="${rwst.output.dir}"/>
@@ -145,10 +129,9 @@
   
   <target name="compile.module.rwst.production" description="Compile module rwst; production classes">
     <mkdir dir="${rwst.output.dir}"/>
-    <javac destdir="${rwst.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.rwst}/javac">
+    <javac destdir="${rwst.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="javac">
       <compilerarg line="${compiler.args.rwst}"/>
       <bootclasspath refid="rwst.module.bootclasspath"/>
-      <classpath refid="rwst.module.production.classpath"/>
       <src refid="rwst.module.sourcepath"/>
       <patternset refid="excluded.from.compilation.rwst"/>
     </javac>
