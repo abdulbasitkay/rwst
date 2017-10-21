@@ -9,11 +9,11 @@ public class Main {
         System.out.println(generateRandom());
     }
 
-    private static String generateRandom() {
+    static String generateRandom() {
         int i = (int) (Math.random() * 4);
         return String.join(" ", adjectives[rad()], buzz[rad()], adverbs[rad()], verbs[rad()], buzz[rad()]);
     }
-    private static int rad(){
+    static int rad(){
         return (int) (Math.random() * 4);
     }
 
