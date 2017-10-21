@@ -141,7 +141,7 @@
   </path>
   
   
-  <target name="compile.module.rwst" depends="compile.module.rwst.production,compile.module.rwst.tests" description="Compile module rwst"/>
+  <target name="compile.module.rwst" depends="compile.module.rwst.production,test" description="Compile module rwst"/>
   
   <target name="compile.module.rwst.production" description="Compile module rwst; production classes">
     <mkdir dir="${rwst.output.dir}"/>
@@ -161,7 +161,7 @@
     </copy>
   </target>
   
-  <target name="compile.module.rwst.tests" depends="compile.module.rwst.production" description="compile module rwst; test classes" unless="skip.tests"/>
+  <target name="test" depends="compile.module.rwst.production" description="compile module rwst; test classes" unless="skip.tests"/>
   
   <target name="clean.module.rwst" description="cleanup module">
     <delete dir="${rwst.output.dir}"/>
